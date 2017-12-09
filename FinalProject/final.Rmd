@@ -24,15 +24,16 @@ Using the App is very simple. All you need to do is measure the height of your L
 
 ## What The App Does
 
-The App fits two different models, one with just a plain-old LSLR with age as the outcome and height as the predictor. The second model raises the age to the 1/2 power in an attempt to make the data more linear.
-
-Depending on the history of your tree, you can decide which model to use. Both models are displayed with a line of best fit as well as a sliding point that matches your height input.
+The App fits two different models. Both models are displayed with a line of best fit as well as a sliding point that matches your height input.
 
 
-
-- model1 <- lm(age~height, data=tree)
-- model2 <- lm(I(age^.5)~height, data=tree)
-
+```{r, echo=TRUE}
+tree <- Loblolly
+model1 <- lm(age~height, data=tree)
+model2 <- lm(I(age^.5)~height, data=tree)
+summary(model1)$coef
+summary(model2)$coef
+```
 
 
 ## What's the Magic of Model 2?

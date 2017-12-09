@@ -111,14 +111,22 @@
 
 </article></slide><slide class=''><hgroup><h2>What The App Does</h2></hgroup><article  id="what-the-app-does">
 
-<p>The App fits two different models, one with just a plain-old LSLR with age as the outcome and height as the predictor. The second model raises the age to the 1/2 power in an attempt to make the data more linear.</p>
+<p>The App fits two different models. Both models are displayed with a line of best fit as well as a sliding point that matches your height input.</p>
 
-<p>Depending on the history of your tree, you can decide which model to use. Both models are displayed with a line of best fit as well as a sliding point that matches your height input.</p>
+<pre class = 'prettyprint lang-r'>tree &lt;- Loblolly
+model1 &lt;- lm(age~height, data=tree)
+model2 &lt;- lm(I(age^.5)~height, data=tree)
+summary(model1)$coef</pre>
 
-<ul>
-<li>model1 &lt;- lm(age~height, data=tree)</li>
-<li>model2 &lt;- lm(I(age^.5)~height, data=tree)</li>
-</ul>
+<pre >##              Estimate  Std. Error   t value     Pr(&gt;|t|)
+## (Intercept) 0.7573804 0.229203295  3.304405 1.412696e-03
+## height      0.3782742 0.005978565 63.271737 2.260146e-71</pre>
+
+<pre class = 'prettyprint lang-r'>summary(model2)$coef</pre>
+
+<pre >##               Estimate   Std. Error   t value     Pr(&gt;|t|)
+## (Intercept) 1.58727376 0.0215732617  73.57597 1.183624e-76
+## height      0.05639876 0.0005627195 100.22536 1.537704e-87</pre>
 
 </article></slide><slide class=''><hgroup><h2>What&#39;s the Magic of Model 2?</h2></hgroup><article  id="whats-the-magic-of-model-2">
 
